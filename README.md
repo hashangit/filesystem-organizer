@@ -135,6 +135,16 @@ Phase 4: EXECUTE   → Carry out approved changes with safety checks
 Phase 5: VERIFY    → Confirm results, report savings
 ```
 
+### Built to Adapt
+
+The bundled scripts are starting points — not finished products. The skill instructs the agent to **inspect and adapt every script to your system** before running:
+
+- **`KNOWN_DOTDIRS` mapping** is extended on-the-fly as new tools are discovered on your machine
+- **Paths and package managers** are adjusted to match your OS and setup (macOS, Linux, Homebrew, apt, npm, pnpm, etc.)
+- **User directives** are codified into scripts immediately — if you say "never touch X," it becomes a rule
+
+This means the toolkit gets smarter and more personalized with each use.
+
 ### What gets cleaned
 
 | Category | Examples | Risk |
@@ -167,17 +177,19 @@ file it or delete it.             ├── secrets/
 
 ---
 
-## 🛡️ Safety
+## 🛡️ Safety — Non-Negotiable
 
-**This toolkit never deletes anything without your explicit permission.**
+> **This toolkit will never delete, move, or modify anything without your explicit, item-by-item approval.**
 
-1. **All destructive scripts default to dry-run.** They report what they *would* do. Add `--execute` only after review.
-2. **Critical path protection.** Never touches `~/.ssh`, `~/.gitconfig`, shell configs, `~/.profile`, system libraries.
+There is no "clean up everything" mode. There are no automatic deletions. Every destructive action requires you to review and approve it first.
+
+1. **All destructive scripts default to dry-run.** They report what they *would* do. The `--execute` flag is gated behind user approval.
+2. **Critical path protection.** Never touches `~/.ssh`, `~/.gitconfig`, shell configs, `~/.profile`, system libraries — these paths are hard-blocked.
 3. **Git backup before archiving.** Repos with unpushed work get a `backup/pre-archive-YYYYMMDD` branch pushed to remote before any local changes.
 4. **Four risk levels** with required confirmation for each. Medium and high-risk items require individual approval.
-5. **Read the full safety rules:** [`references/safety_rules.md`](references/safety_rules.md)
+5. **Agent skill directive**: The SKILL.md enforces a non-negotiable "ask before destroy" clause at the very top — agents using this skill cannot bypass it.
+6. **Read the full safety rules:** [`references/safety_rules.md`](references/safety_rules.md)
 
----
 
 ## 📦 Installation
 
